@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:core="http://java.sun.com/jsf/composite/core"
+	template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+
+		<h:form>
+			<p:growl id="growl" showDetail="true" sticky="true" />
+		</h:form>
+
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nombre" />
+				<h:inputText value="#{personaController.personaNueva.nombre}" />
+
+				<h:outputLabel value="Apellido" />
+				<h:inputText value="#{personaController.personaNueva.apellido}" />
+
+				<h:outputLabel value="Cedula" />
+				<h:inputText value="#{personaController.personaNueva.cedula}" />
+
+			</h:panelGrid>
+
+			<p:commandButton action="#{personaController.agregarPersona()}"
+				value="Agregar!" update="@all" />
+		</h:form>
+
+		<h:form>
+			<p:dataTable var="persona" value="#{personaController.personas}"
+				id="tablaDePersonas" paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
+				<p:column headerText="Id">
+					<h:outputText value="#{persona.id}" />
+				</p:column>
+
+				<p:column headerText="Nombre" sortBy="#{persona.nombre}"
+					filterMatchMode="contains" filterBy="#{persona.nombre}">
+					<h:outputText value="#{persona.nombre}" />
+				</p:column>
+
+				<p:column headerText="Apellido">
+					<h:outputText value="#{persona.apellido}" />
+				</p:column>
+
+				<p:column headerText="Cedula">
+					<h:outputText value="#{persona.cedula}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
