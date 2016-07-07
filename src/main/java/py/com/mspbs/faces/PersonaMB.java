@@ -27,7 +27,7 @@ public class PersonaMB implements Serializable {
 	@PostConstruct
 	public void init() {
 
-		this.personas = logica.getPersonas();
+		this.personas = logica.getPersonas(0, 10);
 
 		personaNueva = new Persona();
 		personaNueva.setNombre("Cambiame el nombre");
@@ -36,7 +36,7 @@ public class PersonaMB implements Serializable {
 	public void agregarPersona() {
 		personaNueva = logica.agreagrOActualizarPersona(personaNueva);
 
-		this.personas = logica.getPersonas();
+		this.personas = logica.getPersonas(0, 10);
 
 		FacesMessage fm = new FacesMessage("Hola", "Mundo");
 		FacesContext.getCurrentInstance().addMessage(null, fm);

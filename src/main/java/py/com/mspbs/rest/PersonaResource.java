@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import io.swagger.annotations.Api;
@@ -28,8 +29,8 @@ public class PersonaResource {
 
 	@GET
 	@ApiOperation("Retorna la lista de personas")
-	public List<Persona> getTodos() {
-		return logica.getPersonas();
+	public List<Persona> getTodos(@QueryParam("cantidad") int cantidad, @QueryParam("primero") int primero) {
+		return logica.getPersonas(cantidad, primero);
 	}
 
 	@POST
